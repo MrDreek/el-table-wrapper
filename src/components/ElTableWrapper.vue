@@ -2,7 +2,6 @@
 import Vue from 'vue'
 import { getValueByPath, orderBy } from './util'
 import { map } from 'lodash/core'
-import debounce from 'lodash/debounce'
 import groupBy from 'lodash/groupBy'
 
 const defaultPagination = {
@@ -386,9 +385,7 @@ export default {
             value: value
           },
           on: {
-            input: debounce(value => {
-              that.onSearchInput(columnAttr, value)
-            }, 300)
+            change: that.onSearchInput(columnAttr, value)
           },
           nativeOn: {
             keyup: e => {
